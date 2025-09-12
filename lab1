@@ -28,7 +28,6 @@ pythagoreanTriples =
                  b <- [a..c],
                  a^2 + b^2 == c^2]
 
--- Ефективна реалізація Fibonacci з акумуляторами
 fibonacci :: Int -> Int
 fibonacci n
     | n < 0     = error "Від'ємний індекс"
