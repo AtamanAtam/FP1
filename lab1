@@ -1,0 +1,74 @@
+module Main where
+
+doubleEven :: [Int] -> [Int]
+doubleEven = map (\x -> if even x then x * 2 else x)
+
+sumOdd :: [Int] -> Int
+sumOdd = sum . filter odd
+
+absList :: [Int] -> [Int]
+absList = map abs
+
+myLength :: [a] -> Int
+myLength [] = 0
+myLength (_:xs) = 1 + myLength xs
+
+myReverse :: [a] -> [a]
+myReverse [] = []
+myReverse (x:xs) = myReverse xs ++ [x]
+
+myMaximum :: Ord a => [a] -> a
+myMaximum [] = error "Empty list"
+myMaximum [x] = x
+myMaximum (x:xs) = max x (myMaximum xs)
+
+pythagoreanTriples :: [(Int, Int, Int)]
+pythagoreanTriples = 
+    [(a, b, c) | c <- [1..20], 
+                 a <- [1..c], 
+                 b <- [1..c], 
+                 a^2 + b^2 == c^2, 
+                 a <= b]
+
+fibonacci :: Int -> Int
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci n = fibonacci (n-1) + fibonacci (n-2)
+
+-- Главная функция для тестирования
+main :: IO ()
+main = do
+    putStrLn "=== Тестирование всех заданий ==="
+    
+    putStrLn "\n1. doubleEven [1,2,3,4]:"
+    print $ doubleEven [1,2,3,4]
+    putStrLn "Ожидается: [1,4,3,8]"
+    
+    putStrLn "\n2. sumOdd [1,2,3,4,5]:"
+    print $ sumOdd [1,2,3,4,5]
+    putStrLn "Ожидается: 9"
+    
+    putStrLn "\n3. absList [-3,5,-7]:"
+    print $ absList [-3,5,-7]
+    putStrLn "Ожидается: [3,5,7]"
+    
+    putStrLn "\n4. myLength [1,2,3,4]:"
+    print $ myLength [1,2,3,4]
+    putStrLn "Ожидается: 4"
+    
+    putStrLn "\n5. myReverse [1,2,3]:"
+    print $ myReverse [1,2,3]
+    putStrLn "Ожидается: [3,2,1]"
+    
+    putStrLn "\n6. myMaximum [3,7,2,9,4]:"
+    print $ myMaximum [3,7,2,9,4]
+    putStrLn "Ожидается: 9"
+    
+    putStrLn "\n7. Первые 5 пифагоровых троек:"
+    print $ take 5 pythagoreanTriples
+    
+    putStrLn "\n8. fibonacci 6:"
+    print $ fibonacci 6
+    putStrLn "Ожидается: 8"
+    
+    putStrLn "\n=== Все тесты завершены ==="
